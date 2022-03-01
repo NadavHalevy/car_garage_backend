@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VehiclesRepository extends JpaRepository <Vehicles, Integer> {
-    //It's an integrator because the primary key is a (private int) id
+    //It's an integrator because the primary key is a (int) id
 }

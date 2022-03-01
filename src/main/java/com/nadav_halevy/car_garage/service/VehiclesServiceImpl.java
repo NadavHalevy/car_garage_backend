@@ -22,4 +22,19 @@ public class VehiclesServiceImpl implements VehiclesService{
     public List<Vehicles> getAllVehicles() {
         return vehiclesRepository.findAll();
     }
+
+    /*@Override
+    public Vehicles retrieveSingleVehicleByLicenseNumber(int licenseNumber) {
+        return null;
+    }
+
+    @Override
+    public void vehicleTiresToMaximumPressure(int licenseNumber) {
+
+    }
+
+    @Override
+    public void addEnergy(int licenseNumber) {
+
+    }*/
 }

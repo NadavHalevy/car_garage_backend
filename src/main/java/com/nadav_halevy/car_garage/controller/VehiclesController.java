@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vehicles")
+@CrossOrigin
 public class VehiclesController {
     @Autowired
     private VehiclesService vhiclesService;
@@ -24,5 +25,21 @@ public class VehiclesController {
     public List<Vehicles> getAllVehicles(){
         return vhiclesService.getAllVehicles();
     }
+
+ /*   @GetMapping("/getSingleVehicle")
+    public Vehicles getSingleVehicleByLicenseNumber(int licenseNumber){
+        return vhiclesService.retrieveSingleVehicleByLicenseNumber(licenseNumber);
+    }
+
+    @PostMapping("/inflateVehicle")
+    public void doVehicleTiresToMaximumPressure(int licenseNumber){
+        vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
+    }
+
+    @PostMapping("/addEnergy")
+    public void addEnergyRefuelOrRecharge(int licenseNumber){
+        vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
+    }*/
+
 
 }

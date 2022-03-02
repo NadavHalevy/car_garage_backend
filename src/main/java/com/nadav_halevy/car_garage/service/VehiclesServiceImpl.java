@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehiclesServiceImpl implements VehiclesService{
@@ -26,8 +25,8 @@ public class VehiclesServiceImpl implements VehiclesService{
 
     @Override
 
-    public Optional<Vehicles> retrieveSingleVehicleByLicenseNumber(String id) {
-        return vehiclesRepository.findById(id);
+    public Vehicles retrieveSingleVehicleByLicenseNumber(String id) {
+        return vehiclesRepository.findById(id).get();
     }
 
     /*@Override

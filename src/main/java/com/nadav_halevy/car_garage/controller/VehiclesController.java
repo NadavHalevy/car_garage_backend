@@ -1,12 +1,15 @@
 package com.nadav_halevy.car_garage.controller;
 
 import com.nadav_halevy.car_garage.model.Vehicles;
+import com.nadav_halevy.car_garage.repository.VehiclesRepository;
 import com.nadav_halevy.car_garage.service.VehiclesService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -14,6 +17,7 @@ import java.util.List;
 public class VehiclesController {
     @Autowired
     private VehiclesService vhiclesService;
+    private VehiclesRepository vehiclesRepository;
 
     @PostMapping("/add")
     public String add(@RequestBody Vehicles vehicle){
@@ -26,12 +30,17 @@ public class VehiclesController {
         return vhiclesService.getAllVehicles();
     }
 
- /*   @GetMapping("/getSingleVehicle")
-    public Vehicles getSingleVehicleByLicenseNumber(int licenseNumber){
-        return vhiclesService.retrieveSingleVehicleByLicenseNumber(licenseNumber);
+   @GetMapping("/getSingleVehicle/{id}")
+    public ResponseEntity<Vehicles> getSingleVehicleByLicenseNumber(@PathVariable("id") String id, @RequestBody(required = false) Vehicles vehicle){
+       Optional<Vehicles> vehicleData = vehiclesRepository.findById(id);
+       if (vehicleData.isPresent()) {
+           return new ResponseEntity<Vehicles>(vehiclesRepository.save(vehicle), HttpStatus.OK);
+       } else {
+           return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+       }
     }
 
-    @PostMapping("/inflateVehicle")
+/*     @PostMapping("/inflateVehicle")
     public void doVehicleTiresToMaximumPressure(int licenseNumber){
         vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
     }

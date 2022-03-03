@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VehiclesRepository extends JpaRepository <Vehicles, String> {
+public interface VehiclesRepository extends JpaRepository <Vehicles, Integer> {
     //It's an integrator because the primary key is a (int) id
+
+    Vehicles findByLicenseNumber(int licenseNumber);;
+
 }

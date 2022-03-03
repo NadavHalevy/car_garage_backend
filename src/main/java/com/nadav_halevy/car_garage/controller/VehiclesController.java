@@ -31,10 +31,10 @@ public class VehiclesController {
     }
 
    @GetMapping("/getSingleVehicle/{id}")
-    public ResponseEntity<Vehicles> getSingleVehicleByLicenseNumber(@PathVariable String id){
+    public ResponseEntity<Vehicles> getVehicleByID(@PathVariable int id){
 
        try {
-            Vehicles vehicle = vhiclesService.retrieveSingleVehicleByLicenseNumber(id);
+            Vehicles vehicle = vhiclesService.findVehicleByID(id);
             return new ResponseEntity<Vehicles>(vehicle, HttpStatus.OK);
 
        }catch (NoSuchElementException e) {
@@ -42,10 +42,23 @@ public class VehiclesController {
        }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Vehicles> updateVehicles(@RequestBody Vehicles vehicle, @PathVariable String id) {
+    @GetMapping("/getSingleVehicleByLicenseNumber/{licenseNumber}")
+    public ResponseEntity<Vehicles> getVehicleByLicenseNumber(@PathVariable int licenseNumber){
+
         try {
-            Vehicles existingVehicle = vhiclesService.retrieveSingleVehicleByLicenseNumber(id);
+            Vehicles vehicle = vhiclesService.findVehicleByLicenseNumber(licenseNumber);
+            return new ResponseEntity<Vehicles>(vehicle, HttpStatus.OK);
+
+        }catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Vehicles> updateVehicles(@RequestBody Vehicles vehicle, @PathVariable int id) {
+        try {
+            Vehicles existingVehicle = vhiclesService.findVehicleByID(id);
             vhiclesService.saveVehicles(vehicle);
             return new ResponseEntity<Vehicles>(HttpStatus.OK);
 
@@ -55,10 +68,44 @@ public class VehiclesController {
     }
 
     @DeleteMapping("/delete/{id}")
-        public String deleteVehicle( @PathVariable String id){
+        public String deleteVehicle( @PathVariable int id){
             vhiclesService.deleteVehicle(id);
-            return "Deleted Student With id: " + id;
+            return "Deleted Vehicle With id: " + id;
         }
+
+    @DeleteMapping("/deleteAll")
+    public String deleteAllVehicles( ){
+        vhiclesService.deleteAllVehicles();
+        return "All Vehicles Were Deleted";
+    }
+
+    @PutMapping("/updateTires/{licenseNumber}/{howMuch}")
+    public ResponseEntity<Vehicles> vehicleTiresToMaximumPressure(@PathVariable int licenseNumber,@PathVariable  int howMuch) {
+
+        try {
+            Vehicles existingVehicle = vhiclesService.findVehicleByLicenseNumber(licenseNumber);
+            existingVehicle.inflateTire(howMuch);
+            vhiclesService.saveVehicles(existingVehicle);
+            return new ResponseEntity<Vehicles>(HttpStatus.OK);
+
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/addEnergy/{licenseNumber}/{howMuch}")
+    public ResponseEntity<Vehicles> addEnergyRefuelOrRecharge(@PathVariable int licenseNumber,@PathVariable  int howMuch) {
+
+        try {
+            Vehicles existingVehicle = vhiclesService.findVehicleByLicenseNumber(licenseNumber);
+            existingVehicle.addEnergy(howMuch);
+            vhiclesService.saveVehicles(existingVehicle);
+            return new ResponseEntity<Vehicles>(HttpStatus.OK);
+
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+        }
+    }
    /* @PostMapping("/addEnergy")
     public void addEnergyRefuelOrRecharge(int licenseNumber){
         vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
@@ -67,3 +114,14 @@ public class VehiclesController {
 
 
 }
+//Inflate vehicle tires to maximum pressure
+
+/*
+    public void vehicleTiresToMaximumPressure(String id, int howMuch);
+*/
+
+
+    /*//Add energy (Refuel a vehicle or recharge) by license number
+    public void addEnergy(int licenseNumber);
+
+    getSingleVehicleByLicenseNumber*/

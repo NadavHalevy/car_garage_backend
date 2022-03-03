@@ -4,14 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Optional;
 
 @Entity
 public class Vehicles {
 
+    final int MOTORCYCLE = 2;
+    final int CAR = 4;
+    final int TRUCK = 16;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private int licenseNumber;
     private String typeOfVehicle;
     private String modelName;
@@ -34,11 +37,11 @@ public class Vehicles {
         this.setBatteryOrFuel(vehicle.getBatteryOrFuel());
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,7 +80,7 @@ public class Vehicles {
     public int getTirePressure() {
         return tirePressure;
     }
-
+    //Maximum
     public void setTirePressure(int tirePressure) {
         this.tirePressure = tirePressure;
     }
@@ -87,7 +90,22 @@ public class Vehicles {
     }
 
     public void setWheels(int wheels) {
-        this.wheels = wheels;
+        switch (this.getTypeOfVehicle().toLowerCase()) {
+
+            case "regular motorcycle":
+                this.wheels = MOTORCYCLE;
+            case "electric motorcycle":
+                this.wheels = MOTORCYCLE;
+            case "regular car":
+                this.wheels = CAR;
+            case "electric car":
+                this.wheels = CAR;
+            case "truck":
+                this.wheels = TRUCK;
+            default:
+                this.wheels = wheels;
+
+        }
     }
 
     public String getBatteryOrFuel() {
@@ -95,11 +113,27 @@ public class Vehicles {
     }
 
     public void setBatteryOrFuel(String batteryOrFuel) {
-        this.batteryOrFuel = batteryOrFuel;
+
+        switch (this.getTypeOfVehicle().toLowerCase()) {
+
+            case "regular motorcycle":
+                this.batteryOrFuel = "fuel";
+            case "electric motorcycle":
+                this.batteryOrFuel = "battery";
+            case "regular car":
+                this.batteryOrFuel = "fuel";
+            case "electric car":
+                this.batteryOrFuel = "battery";
+            case "truck":
+                this.batteryOrFuel = "fuel";
+            default:
+                this.batteryOrFuel = batteryOrFuel;
+
+        }
     }
 
     public void inflateTire (int howMuchAirPressureToAdd){
-
+        /*if(this.tirePressure >)*/
         this.tirePressure += howMuchAirPressureToAdd;
     }
 
@@ -107,5 +141,6 @@ public class Vehicles {
             int howMuchEnergyToAdd){
         this.energyPercentage += howMuchEnergyToAdd;
     }
+
 
 }

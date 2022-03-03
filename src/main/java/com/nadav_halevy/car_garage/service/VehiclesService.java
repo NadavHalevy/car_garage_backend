@@ -10,24 +10,13 @@ public interface VehiclesService {
     public Vehicles saveVehicles(Vehicles vehicle);
     //Retrieve all of the available vehicles
     public List<Vehicles> getAllVehicles();
-    //Retrieve a single vehicle by license number
-    public Vehicles retrieveSingleVehicleByLicenseNumber(String licenseNumber);
+    //Find a single vehicle by ID
+    public Vehicles findVehicleByID(int id);
+    //Find a single vehicle by license number
+    public Vehicles findVehicleByLicenseNumber(int licenseNumber);
     //Delete a single vehicle by license number
-    public void deleteVehicle(String id);
-
-
-
-
-    //Inflate vehicle tires to maximum pressure
-
-/*
-    public void vehicleTiresToMaximumPressure(String id, int howMuch);
-*/
-
-
-    /*//Add energy (Refuel a vehicle or recharge) by license number
-    public void addEnergy(int licenseNumber);*/
+    public void deleteVehicle(int id);
+    //Delete all vehicles
+    public void deleteAllVehicles();
 
 }
-
-//public Vehicles getVehiclesByLicenseNumber(int licenseNumber);

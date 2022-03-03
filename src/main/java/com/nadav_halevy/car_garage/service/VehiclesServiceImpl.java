@@ -26,13 +26,22 @@ public class VehiclesServiceImpl implements VehiclesService{
         return vehiclesRepository.findAll();
     }
 
-    public Vehicles retrieveSingleVehicleByLicenseNumber(String id) {
+    public Vehicles findVehicleByID (int id) {
         return vehiclesRepository.findById(id).get();
     }
 
-    public void deleteVehicle(String id){
+    public Vehicles findVehicleByLicenseNumber(int licenseNumber) {
+        return vehiclesRepository.findByLicenseNumber(licenseNumber);
+    }
+
+    public void deleteVehicle(int id){
         vehiclesRepository.deleteById(id);
     }
+
+    public void deleteAllVehicles(){
+        vehiclesRepository.deleteAll();
+    }
+
 
     /*@Override
     public void vehicleTiresToMaximumPressure(String id, int howMuch) {
@@ -49,5 +58,7 @@ public class VehiclesServiceImpl implements VehiclesService{
     /*@Override
     public void addEnergy(int licenseNumber) {
 
-    }*/
+    }
+
+    retrieveSingleVehicleByLicenseNumber*/
 }

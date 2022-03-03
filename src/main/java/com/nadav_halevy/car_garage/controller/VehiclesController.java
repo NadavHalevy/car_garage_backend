@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.PostUpdate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -106,22 +105,4 @@ public class VehiclesController {
             return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
         }
     }
-   /* @PostMapping("/addEnergy")
-    public void addEnergyRefuelOrRecharge(int licenseNumber){
-        vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
-    }*/
-
-
-
-}
-//Inflate vehicle tires to maximum pressure
-
-/*
-    public void vehicleTiresToMaximumPressure(String id, int howMuch);
-*/
-
-
-    /*//Add energy (Refuel a vehicle or recharge) by license number
-    public void addEnergy(int licenseNumber);
-
-    getSingleVehicleByLicenseNumber*/
+ }

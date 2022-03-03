@@ -16,7 +16,7 @@ public class Vehicles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int licenseNumber;
-    private String typeOfVehicle;
+    private String vehicleType;
     private String modelName;
     private int energyPercentage; //How much battery or fuel is left
     private int tirePressure; //Maximum
@@ -29,7 +29,7 @@ public class Vehicles {
     public Vehicles(Vehicles vehicle) {
         this.setId(vehicle.getId());
         this.setLicenseNumber(vehicle.getLicenseNumber());
-        this.setTypeOfVehicle(vehicle.getTypeOfVehicle());
+        this.setVehicleType(vehicle.getVehicleType());
         this.setModelName(vehicle.getModelName());
         this.setEnergyPercentage(vehicle.getEnergyPercentage());
         this.setTirePressure(vehicle.getTirePressure());
@@ -53,12 +53,12 @@ public class Vehicles {
         this.licenseNumber = licenseNumber;
     }
 
-    public String getTypeOfVehicle() {
-        return typeOfVehicle;
+    public String getVehicleType(){
+        return vehicleType;
     }
 
-    public void setTypeOfVehicle(String typeOfVehicle) {
-        this.typeOfVehicle = typeOfVehicle;
+    public void setVehicleType(String vehicleType ){
+        this.vehicleType = vehicleType;
     }
 
     public String getModelName() {
@@ -90,20 +90,22 @@ public class Vehicles {
     }
 
     public void setWheels(int wheels) {
-        switch (this.getTypeOfVehicle().toLowerCase()) {
+        switch (this.getVehicleType().toLowerCase()) {
 
             case "regular motorcycle":
-                this.wheels = MOTORCYCLE;
             case "electric motorcycle":
-                this.wheels = MOTORCYCLE;
+                this.wheels = 2;
+                break;
             case "regular car":
-                this.wheels = CAR;
             case "electric car":
-                this.wheels = CAR;
+                this.wheels = 4;
+                break;
             case "truck":
-                this.wheels = TRUCK;
+                this.wheels = 16;
+                break;
             default:
                 this.wheels = wheels;
+                break;
 
         }
     }
@@ -114,20 +116,20 @@ public class Vehicles {
 
     public void setBatteryOrFuel(String batteryOrFuel) {
 
-        switch (this.getTypeOfVehicle().toLowerCase()) {
+        switch (this.getVehicleType().toLowerCase()) {
 
             case "regular motorcycle":
-                this.batteryOrFuel = "fuel";
-            case "electric motorcycle":
-                this.batteryOrFuel = "battery";
             case "regular car":
-                this.batteryOrFuel = "fuel";
-            case "electric car":
-                this.batteryOrFuel = "battery";
             case "truck":
                 this.batteryOrFuel = "fuel";
+                break;
+            case "electric motorcycle":
+            case "electric car":
+                this.batteryOrFuel = "battery";
+                break;
             default:
                 this.batteryOrFuel = batteryOrFuel;
+                break;
 
         }
     }

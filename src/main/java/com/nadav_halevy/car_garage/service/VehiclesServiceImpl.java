@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehiclesServiceImpl implements VehiclesService{
@@ -42,23 +41,4 @@ public class VehiclesServiceImpl implements VehiclesService{
         vehiclesRepository.deleteAll();
     }
 
-
-    /*@Override
-    public void vehicleTiresToMaximumPressure(String id, int howMuch) {
-        try {
-            Optional<Vehicles> vehicle = this.vehiclesRepository.findById(update.getId());
-            ResponseEntity<Vehicles> vehiclesResponseEntity = new ResponseEntity<Vehicles>(vehicle, HttpStatus.OK);
-            return vehiclesResponseEntity;
-
-        }catch (NoSuchElementException e) {
-            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
-        }
-    }*/
-
-    /*@Override
-    public void addEnergy(int licenseNumber) {
-
-    }
-
-    retrieveSingleVehicleByLicenseNumber*/
 }

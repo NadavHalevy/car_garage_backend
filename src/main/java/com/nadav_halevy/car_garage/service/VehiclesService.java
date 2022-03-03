@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface VehiclesService {
     //Add a new vehicle to the vehicle's collection
     public Vehicles saveVehicles(Vehicles vehicle);
-    //Retrieve all of the available vehicles
+
+    //Retrieve all available vehicles
     public List<Vehicles> getAllVehicles();
     //Find a single vehicle by ID
     public Vehicles findVehicleByID(int id);

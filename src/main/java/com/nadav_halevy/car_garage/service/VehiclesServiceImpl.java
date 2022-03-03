@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VehiclesServiceImpl implements VehiclesService{
@@ -15,26 +16,37 @@ public class VehiclesServiceImpl implements VehiclesService{
 
     @Override
     public Vehicles saveVehicles(Vehicles vehicle) {
+
         return vehiclesRepository.save(vehicle);
     }
 
     @Override
     public List<Vehicles> getAllVehicles() {
+
         return vehiclesRepository.findAll();
     }
-
-    @Override
 
     public Vehicles retrieveSingleVehicleByLicenseNumber(String id) {
         return vehiclesRepository.findById(id).get();
     }
 
-    /*@Override
-    public void vehicleTiresToMaximumPressure(int licenseNumber) {
-
+    public void deleteVehicle(String id){
+        vehiclesRepository.deleteById(id);
     }
 
-    @Override
+    /*@Override
+    public void vehicleTiresToMaximumPressure(String id, int howMuch) {
+        try {
+            Optional<Vehicles> vehicle = this.vehiclesRepository.findById(update.getId());
+            ResponseEntity<Vehicles> vehiclesResponseEntity = new ResponseEntity<Vehicles>(vehicle, HttpStatus.OK);
+            return vehiclesResponseEntity;
+
+        }catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+        }
+    }*/
+
+    /*@Override
     public void addEnergy(int licenseNumber) {
 
     }*/

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.PostUpdate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -15,6 +17,7 @@ import java.util.NoSuchElementException;
 public class VehiclesController {
     @Autowired
     private VehiclesService vhiclesService;
+
 
     @PostMapping("/add")
     public String add(@RequestBody Vehicles vehicle){
@@ -39,15 +42,28 @@ public class VehiclesController {
        }
     }
 
-/*     @PostMapping("/inflateVehicle")
-    public void doVehicleTiresToMaximumPressure(int licenseNumber){
-        vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Vehicles> updateVehicles(@RequestBody Vehicles vehicle, @PathVariable String id) {
+        try {
+            Vehicles existingVehicle = vhiclesService.retrieveSingleVehicleByLicenseNumber(id);
+            vhiclesService.saveVehicles(vehicle);
+            return new ResponseEntity<Vehicles>(HttpStatus.OK);
+
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Vehicles>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PostMapping("/addEnergy")
+    @DeleteMapping("/delete/{id}")
+        public String deleteVehicle( @PathVariable String id){
+            vhiclesService.deleteVehicle(id);
+            return "Deleted Student With id: " + id;
+        }
+   /* @PostMapping("/addEnergy")
     public void addEnergyRefuelOrRecharge(int licenseNumber){
         vhiclesService.vehicleTiresToMaximumPressure(licenseNumber);
     }*/
+
 
 
 }

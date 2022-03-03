@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Optional;
 
 @Entity
 public class Vehicles {
@@ -20,6 +21,17 @@ public class Vehicles {
     private String batteryOrFuel;
 
     public Vehicles() {
+    }
+
+    public Vehicles(Vehicles vehicle) {
+        this.setId(vehicle.getId());
+        this.setLicenseNumber(vehicle.getLicenseNumber());
+        this.setTypeOfVehicle(vehicle.getTypeOfVehicle());
+        this.setModelName(vehicle.getModelName());
+        this.setEnergyPercentage(vehicle.getEnergyPercentage());
+        this.setTirePressure(vehicle.getTirePressure());
+        this.setWheels(vehicle.getWheels());
+        this.setBatteryOrFuel(vehicle.getBatteryOrFuel());
     }
 
     public String getId() {

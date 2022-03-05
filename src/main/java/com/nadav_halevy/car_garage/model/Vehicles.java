@@ -26,7 +26,18 @@ public class Vehicles {
     public Vehicles() {
     }
 
-    public Vehicles(Vehicles vehicle) {
+    public Vehicles(int licenseNumber, String vehicleType, String modelName, int energyPercentage, int tirePressure, int wheels, String batteryOrFuel) {
+        super();
+        this.licenseNumber = licenseNumber;
+        this.vehicleType = vehicleType;
+        this.modelName = modelName;
+        this.energyPercentage = energyPercentage;
+        this.tirePressure = tirePressure;
+        this.wheels = wheels;
+        this.batteryOrFuel = batteryOrFuel;
+    }
+
+    public Vehicles(Vehicles vehicle){
         this.setId(vehicle.getId());
         this.setLicenseNumber(vehicle.getLicenseNumber());
         this.setVehicleType(vehicle.getVehicleType());
@@ -36,7 +47,6 @@ public class Vehicles {
         this.setWheels(vehicle.getWheels());
         this.setBatteryOrFuel(vehicle.getBatteryOrFuel());
     }
-
     public int getId() {
         return id;
     }
@@ -135,7 +145,6 @@ public class Vehicles {
     }
 
     public void inflateTire (int howMuchAirPressureToAdd){
-        /*if(this.tirePressure >)*/
         this.tirePressure += howMuchAirPressureToAdd;
     }
 

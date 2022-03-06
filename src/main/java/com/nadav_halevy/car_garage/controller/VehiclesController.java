@@ -73,7 +73,7 @@ public class VehiclesController {
             existingVehicle.setWheels(vehicle.getWheels());
             existingVehicle.setBatteryOrFuel(vehicle.getBatteryOrFuel());
 
-            existingVehicle = vhiclesService.saveVehicles(vehicle);
+            vhiclesService.saveVehicles(existingVehicle);
             this.logger.info(String.format("VehiclesController updateVehicles - vehicle details update: %d", vehicle.getLicenseNumber()));
             return new ResponseEntity<Vehicles>(HttpStatus.OK);
 

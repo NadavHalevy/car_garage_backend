@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface VehiclesRepository extends JpaRepository <Vehicles, Integer> {
     //It's an integrator because the primary key is a (int) id
 
-    Vehicles findByLicenseNumber(@Param("licenseNumber") int licenseNumber);;
+    Vehicles findByLicenseNumber( int licenseNumber);;
 
 }

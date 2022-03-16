@@ -100,24 +100,7 @@ public class Vehicles {
     }
 
     public void setWheels(int wheels) {
-        switch (this.getVehicleType().toLowerCase()) {
-
-            case "regular motorcycle":
-            case "electric motorcycle":
-                this.wheels = 2;
-                break;
-            case "regular car":
-            case "electric car":
-                this.wheels = 4;
-                break;
-            case "truck":
-                this.wheels = 16;
-                break;
-            default:
-                this.wheels = wheels;
-                break;
-
-        }
+        this.wheels = wheels;
     }
 
     public String getBatteryOrFuel() {
@@ -125,23 +108,8 @@ public class Vehicles {
     }
 
     public void setBatteryOrFuel(String batteryOrFuel) {
+        this.batteryOrFuel = batteryOrFuel;
 
-        switch (this.getVehicleType().toLowerCase()) {
-
-            case "regular motorcycle":
-            case "regular car":
-            case "truck":
-                this.batteryOrFuel = "fuel";
-                break;
-            case "electric motorcycle":
-            case "electric car":
-                this.batteryOrFuel = "battery";
-                break;
-            default:
-                this.batteryOrFuel = batteryOrFuel;
-                break;
-
-        }
     }
 
     public void inflateTire (int howMuchAirPressureToAdd){
